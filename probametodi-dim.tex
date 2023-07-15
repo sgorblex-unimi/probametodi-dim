@@ -25,14 +25,18 @@
 \begin{document}
 \maketitle
 
+
+
+
 \section{Equivalenza tra matrici primitive e matrici irriducibili aperiodiche}
+
 
 \subsection{Requisiti}
 \begin{prop}\label{prop:rq}
-	Sia $A\in\Rp^{k\times k}$ irriducibile e sia $d$ il suo periodo. Allora per ogni $i,j\in k$ esistono $r_{i,j},q_{i,j}\in\N$ tali che $0\leq r_{i,j}<d\land 0<q_{i,j}$ e:
+	Sia $A\in\Rp^{k\times k}$ irriducibile e sia $d$ il suo periodo. Allora per ogni $i,j\in k$ esistono $r_{i,j},q_{i,j}\in\N$ tali che $0\le r_{i,j}<d\land 0<q_{i,j}$ e:
 	\begin{enumerate}[(a)]
 		\item \label{elem:rq1} $\forall s\in\N\qquad a^{(s)}_{i,j}>0\implies s\congr r_{i,j}\mod d$;
-		\item \label{elem:rq2} $\forall n\geq q_{i,j}\qquad a^{(nd+r_{i,j})}_{i,j}>0$.
+		\item \label{elem:rq2} $\forall n\ge q_{i,j}\qquad a^{(nd+r_{i,j})}_{i,j}>0$.
 	\end{enumerate}
 \end{prop}
 
