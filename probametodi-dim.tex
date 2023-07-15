@@ -16,6 +16,9 @@
 \newcommand{\Rp}{\R_+}
 \newcommand{\divides}{\mid}
 \newcommand{\congr}{\equiv}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\|#1\|}
+\newcommand{\tra}{^\top}
 
 \usepackage[shortlabels]{enumitem}
 
@@ -52,7 +55,34 @@
 	Inoltre dalla primitività segue che $A^{t+1}>0$. Dal momento che $A^t(i,i)>0$ e $A^{t+1}(i,i)>0$ esistono cicli di lunghezze $t$ e $t+1$ nel grafo rappresentato da $A$. Quindi se $d$ è il periodo di $A$ valgono $d\divides t$ e $d\divides t+1$, il che implica $d=1$.
 
 	$\Leftarrow)$
-	Se $A$ è irriducibile e il suo periodo è $d=1$, applicando la proposizione \ref{prop:rq} si ha che per ogni $i,j\in k$, $r_{i,j}=0$ e $a^{(n1+0)}_{i,j}>0$ per ogni $n\geq q_{i,j}$. Scegliendo $q:=\max_{i,j\in k}\{q_{i,j}\}$ si ha $A^q>0$.
+	Se $A$ è irriducibile e il suo periodo è $d=1$, applicando la proposizione \ref{prop:rq} si ha che per ogni $i,j\in k$, $r_{i,j}=0$ e $a^{(n1+0)}_{i,j}>0$ per ogni $n\ge q_{i,j}$. Scegliendo $q:=\max_{i,j\in k}\{q_{i,j}\}$ si ha $A^q>0$. \qedhere
+\end{proof}
+
+
+
+
+\section{Modulo degli autovalori nelle matrici stocastiche}
+
+\begin{thm}
+	Sia $A\in\Rp^{k\times k}$ stocastica e $\mu$ autovalore di $A$. Allora $\abs{\mu}\le 1$.
+\end{thm}
+\begin{proof}
+	\begin{align*}
+		\abs{\mu}\cdot\norm{v} & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                  \\
+		                       & = \sum_{j=1}^k\abs {(\mu v)_j} = \sum_{j=1}^k\abs {(v\tra A)_j}                \\
+		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{j=1}^k\abs {\sum_{i=1}^k v_i a_{i,j}} \\
+		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{j=1}^k \sum_{i=1}^k \abs{v_i} a_{i,j} \\
+		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{i=1}^k \abs{v_i} \sum_{j=1}^k a_{i,j} \\
+		                       & = \sum_{i=1}^k \abs{v_i} = \norm{v}                                            \\
+	\end{align*}
+	Da cui, essendo $v\neq 0$:
+	\begin{equation*}
+		\abs{\mu}\leq 1 \qedhere
+	\end{equation*}
+\end{proof}
+
+
+
 
 \end{proof}
 
