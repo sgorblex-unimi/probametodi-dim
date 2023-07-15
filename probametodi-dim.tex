@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{thm}{Teorema}
+\newtheorem{prop}{Proposizione}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\N}{\mathbb N}
+\newcommand{\Rp}{\R_+}
+\newcommand{\divides}{\mid}
+\newcommand{\congr}{\equiv}
+
+\usepackage[shortlabels]{enumitem}
+
+\title{Metodi Probabilistici per l'Informatica\\[1ex]\large Riepilogo delle Dimostrazioni richieste}
+\author{Alessandro Clerici}
+
+\begin{document}
+\maketitle
+
+\section{Equivalenza tra matrici primitive e matrici irriducibili aperiodiche}
+
+\subsection{Requisiti}
+\begin{prop}\label{prop:rq}
+	Sia $A\in\Rp^{k\times k}$ irriducibile e sia $d$ il suo periodo. Allora per ogni $i,j\in k$ esistono $r_{i,j},q_{i,j}\in\N$ tali che $0\leq r_{i,j}<d\land 0<q_{i,j}$ e:
+	\begin{enumerate}[(a)]
+		\item \label{elem:rq1} $\forall s\in\N\qquad a^{(s)}_{i,j}>0\implies s\congr r_{i,j}\mod d$;
+		\item \label{elem:rq2} $\forall n\geq q_{i,j}\qquad a^{(nd+r_{i,j})}_{i,j}>0$.
+	\end{enumerate}
+\end{prop}
+
+\subsection{Teorema}
+\begin{thm}
+	Sia $A\in\Rp^{k\times k}$.
+	$A$ è primitiva se e solo se $A$ è irriducibile e aperiodica.
+\end{thm}
+\begin{proof}
+	$\Rightarrow)$
+	Se $A$ è primitiva allora, per definizione, esiste $t\in\N$ tale che $A^t>0$.
+	Naturalmente $A$ è irriducibile, essendo che per ogni $i,j\in k$ vale $a^t_{i,j}>0$.
+	Inoltre dalla primitività segue che $A^{t+1}>0$. Dal momento che $A^t(i,i)>0$ e $A^{t+1}(i,i)>0$ esistono cicli di lunghezze $t$ e $t+1$ nel grafo rappresentato da $A$. Quindi se $d$ è il periodo di $A$ valgono $d\divides t$ e $d\divides t+1$, il che implica $d=1$.
+
+	$\Leftarrow)$
+	Se $A$ è irriducibile e il suo periodo è $d=1$, applicando la proposizione \ref{prop:rq} si ha che per ogni $i,j\in k$, $r_{i,j}=0$ e $a^{(n1+0)}_{i,j}>0$ per ogni $n\geq q_{i,j}$. Scegliendo $q:=\max_{i,j\in k}\{q_{i,j}\}$ si ha $A^q>0$.
+
+\end{proof}
+
+\end{document}
