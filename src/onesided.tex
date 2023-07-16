@@ -1,0 +1,31 @@
+\section{Riduzione della probabilità di errore negli algoritmi 1-sided error}
+\newcommand{\Aalg}{\mathcal A}
+
+Sia $\Aalg$ un algoritmo probabilistico 1-sided error per la funzione di decisione $q:I\to\{0,1\}$.
+Dato $k\in\N_+$, sia $\Aalg_k$ l'algoritmo \ref{alg:1sided}, che ripete $\Aalg$ $k$ volte a meno che produca un output positivo.
+
+\begin{algorithm}
+	\DontPrintSemicolon
+	\KwData{$x$}
+	\SetKwData{Out}{out}
+
+	$i\asn1$ \;
+	\While{$\Out=0\land i\le k$}{
+		$\Out\asn\Aalg(x)$ \;
+		$i\asn i+1$ \;
+	}
+	\Return{\Out} \;
+
+	\caption{Algoritmo $\Aalg_k$ per la riduzione della probabilità di errore di $\Aalg$.}
+	\label{alg:1sided}
+\end{algorithm}
+
+\begin{thm}
+	La probabilità che $\Aalg_k$ sbagli è al più $2^{-k}$.
+\end{thm}
+\begin{proof}
+	Per definizione di algoritmo 1-sided error si ha $\Pr(\Aalg=0\mid q(x)=1)\le\frac 12$. Per $\Aalg_k$:
+	\begin{equation*}
+		\Pr(\text{errore}) = \Pr(\Aalg_k=0\mid q(x)=1) = \Pr(\Aalg=0\mid q(x)=1)^k \le \left(\frac{1}{2}\right)^k \text. \qedhere
+	\end{equation*}
+\end{proof}
