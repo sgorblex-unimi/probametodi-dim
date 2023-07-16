@@ -200,14 +200,14 @@
 \begin{proof}
 	Per definizione e applicando la proposizione \ref{prop:ricorconv}:
 	\begin{equation*}
-		\ev_i(\tau_i) = \sum_{n\ge1} nf\ape{n}(i,i) = \sum_{n\ge1} nO(e^n) < +\infty
+		\ev_i(\tau_i) = \sum_{n\ge1} nf\ape{n}(i,i) = \sum_{n\ge1} nO(\epsilon^n) < +\infty
 	\end{equation*}
 \end{proof}
 
 
 
 
-\section{Tempo medio di rientro finito per gli stati ricorrenti}
+\section{Costruzione di una distribuzione stazionaria}
 
 
 \subsection{Requisiti}
@@ -362,7 +362,7 @@ Sia $Z_G:=\card S$ e $\{\pi:=\frac{1}{Z_G}\}_{i\in S}$. Si consideri l'algoritmo
 			$A\asn A\cup\{v\}$ \;
 		}
 	}
-	\Return A
+	\Return{$A$} \;
 
 	\caption{Algoritmo per generazione casuale di indipendent set.}
 	\label{alg:indset}
@@ -373,7 +373,7 @@ L'algoritmo codifica la catena di Markov $\chain X$ costruita sugli stati $Z_G$ 
 	P(A,B):=\begin{cases}
 		0                  & \qquad \card{A\div B}>1 \\
 		\frac 1 k          & \qquad \card{A\div B}=1 \\
-		1 - \frac{d(A)}{k} & \qquad A=B              \\
+		1 - \frac{d(A)}{k} & \qquad A=B
 	\end{cases}
 \end{equation*}
 Dove $d_A$ è il numero di indipendent set vicini di $A$, ossia
