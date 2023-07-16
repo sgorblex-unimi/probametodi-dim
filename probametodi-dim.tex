@@ -11,6 +11,14 @@
 \newtheorem{thm}{Teorema}
 \newtheorem{prop}{Proposizione}
 
+\usepackage[ruled,vlined,linesnumbered,italiano]{algorithm2e}
+\SetAlFnt{\small}
+\SetAlCapNameFnt{\small}
+\newcommand{\captionstyle}[1]{\small{\textsf{\textbf{#1}}}}
+\SetAlCapSty{captionstyle}
+\SetKwFunction{UR}{Uniform\_random}
+\newcommand{\asn}{\leftarrow}
+
 \newcommand{\R}{\mathbb R}
 \newcommand{\N}{\mathbb N}
 \newcommand{\Rp}{\R_+}
@@ -23,8 +31,10 @@
 \newcommand{\indic}{\mathbb I}
 \newcommand{\ev}{\mathbb E}
 \newcommand{\ape}[1]{^{(#1)}}
+\newcommand{\card}[1]{\left|#1\right|}
 
 \renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\emptyset}{\varnothing}
 \renewcommand{\Pr}{\mathrm{Pr}}
 
 \usepackage[shortlabels]{enumitem}
@@ -328,6 +338,62 @@
 		(\pi\tra P)_j = \sum_{i\in S} \pi_i P(i,j) = \sum_{i\in S} \pi_j P(j,i) = \pi_j \text. \qedhere
 	\end{equation*}
 \end{proof}
+
+
+
+\section{Correttezza dell'MCMC per indipendent set}
+
+Sia $G=(V,E)$ un grafo non orientato, con $E\ne\emptyset$, e sia $S$ l'insieme di insiemi indipendenti su $G$, ossia
+\begin{equation*}
+	S := \{A\subseteq V\mid \forall u,v\in A, \{u,v\}\notin A\} \text.
+\end{equation*}
+Sia $Z_G:=\card S$ e $\{\pi:=\frac{1}{Z_G}\}_{i\in S}$. Si consideri l'algoritmo \ref{alg:indset}.
+
+\begin{algorithm}
+	\DontPrintSemicolon
+	\KwData{$G=(V,E)$,$n$}
+
+	$A\asn\{\UR{V}\}$
+
+	\For{$n$ volte}{
+		$V\asn\UR{V}$ \;
+		\If{$V\in A$}{
+			$A\asn A\setminus\{v\}$ \;
+		}\ElseIf{$\forall z\in A\quad \{z,v\}\notin E$}{
+			$A\asn A\cup\{v\}$ \;
+		}
+	}
+	\Return A
+
+	\caption{Algoritmo per generazione casuale di indipendent set.}
+	\label{alg:indset}
+\end{algorithm}
+
+L'algoritmo codifica la catena di Markov $\chain X$ costruita sugli stati $Z_G$ e la tabella di transizione $P$ definita come segue (denotiamo con $A\div B$ la differenza simmetrica di $A$ e $B$):
+\begin{equation*}
+	P(A,B):=\begin{cases}
+		0                  & \qquad \card{A\div B}>1 \\
+		\frac 1 k          & \qquad \card{A\div B}=1 \\
+		1 - \frac{d(A)}{k} & \qquad A=B              \\
+	\end{cases}
+\end{equation*}
+Dove $d_A$ è il numero di indipendent set vicini di $A$, ossia
+\begin{equation*}
+	d_A:=\card{\{C\in S\mid \card{A\div C}=1\}} \text.
+\end{equation*}
+Si noti che $d_A\le k$, in quanto ogni nodo determina al più un vicino indipendent set.
+
+\begin{thm}
+	La catena $\chain X$ è un algoritmo MCMC corretto per la generazione uniforme di indipendent set sul grafo $G$.
+\end{thm}
+\begin{proof}
+	La matrice $P$ è irriducibile, infatti è sempre possibile passare da un indipendent set $A$ a uno $B$ rimuovendo prima gli elementi in $A\setminus B$ e aggiungendo poi quelli in $B\setminus A$ (viene mantenuto lo status di indipendent set in quanto sottoinsiemi di $A$ e $B$ sono anch'essi indipendent set).
+
+	La matrice è anche aperiodica, infatti sia $\{u,v\}\in E$ (si ricorda che $E\ne\emptyset$). Allora $d_{\{u\}}<k$, in quanto l'insieme $\{u,v\}$ non è indipendente. Ergo $P(\{u\},\{u\})=1-\frac{d_{\{u\}}}{k}>0$, quindi il grafo associato alla catena possiede un cappio.
+
+	$\chain X$ è quindi primitiva ed ergodica e possiede un'unica distribuzione stazionaria, nonché distribuzione limite. Dimostriamo che tale distribuzione è $\pi$ dimostrando che essa è reversibile per $\chain X$. Per i casi $A=B$ e $\card{A\div B}>1$ la reversibilità è ovvia. Per il caso $\card{A\div B}=1$, essendo $\pi$ uniforme la reversibilità segue dalla simmetria di $P$, dovuta alla commutatività dell'operazione di differenza simmetrica.
+\end{proof}
+
 
 
 \end{document}
