@@ -1,0 +1,40 @@
+\section{Lemma di accoppiamento}
+
+
+\subsection{Requisiti}
+\begin{prop}\label{prop:neqvar}
+	Siano $X\sim\mu$ e $Y\sim\pi$ variabili aleatorie su specificazioni nell'insieme finito $S$ (ossia siano $\mu$ e $\pi$ vettori stocastici rappresentanti le rispettive distribuzioni). Allora
+	\begin{equation*}
+		\dtv(\mu,\pi)\le\Pr(X\ne Y)
+	\end{equation*}
+\end{prop}
+
+
+\subsection{Teorema}
+\begin{lemma}[di accoppiamento]
+	Sia $\{X_n,Y_n\}$ un accoppiamento su insieme degli stati $S$ e matrice di transizione $P$ primitiva. Se esistono $\epsilon>0$ e $n\in\N$ tali che per ogni $i,j\in S$
+	\begin{equation*}
+		\Pr(X_n\ne Y_n\mid X_0=i,Y_0=j) \le \epsilon \text,
+	\end{equation*}
+	allora
+	\begin{equation*}
+		\tau(\epsilon) \le n \text.
+	\end{equation*}
+\end{lemma}
+\begin{proof}
+	Sia $\pi$ la distribuzione stazionaria su $\chain X$ (o $\chain Y$).
+	Fissato $i\in S$, sia $\chain{X'}$ la catena su $(S,\delta_i,P)$, dove $\delta_i$ è la distribuzione che ha probabilità $1$ di partire in $i$, e $\chain{Y'}$ la catena su $(S,\pi,P)$. Allora $p\ape{n}_i=\delta_i P^n$ è la distribuzione di $X'_n$ e $\pi$ quella di $Y'_n$.
+	Allora
+	\begin{align*}
+		\Pr(X'_n\ne Y'_n) & = \Pr(X_n\ne Y'_n\mid X_0=i)                                                          \\
+		                  & = \Pr(X_n\ne Y'_n\mid X_0=i)                                                          \\
+		                  & = \sum_{j\in S} \Pr(X_n\ne Y'_n\mid X_0=i,Y'_0=j)\Pr(Y'_0=j)                          \\
+		                  & = \sum_{j\in S} \underbrace{\Pr(X_n\ne Y_n\mid X_0=i,Y_0=j)}_{\le\epsilon}\Pr(Y'_0=j) \\
+		                  & \le \epsilon \sum_{j\in S} \pi_j = \epsilon
+	\end{align*}
+	Da cui, per la proposizione \ref{prop:neqvar}:
+	\begin{align*}
+		\dtv(p\ape{n}_i,\pi) & \le \epsilon
+	\end{align*}
+	e quindi $\tau(\epsilon)\le n$.
+\end{proof}
