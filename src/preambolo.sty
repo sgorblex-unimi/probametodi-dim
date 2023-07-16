@@ -7,8 +7,8 @@
 \usepackage{amsthm}
 \theoremstyle{plain}
 \newtheorem{thm}{Teorema}
-\newtheorem{prop}{Proposizione}
-\newtheorem{lemma}{Lemma}
+\newtheorem{prop}[thm]{Proposizione}
+\newtheorem{lemma}[thm]{Lemma}
 
 \usepackage[ruled,vlined,linesnumbered,italiano]{algorithm2e}
 \SetAlFnt{\small}
@@ -39,3 +39,5 @@
 \renewcommand{\Pr}{\mathrm{Pr}}
 
 \usepackage[shortlabels]{enumitem}
+
+\usepackage[hidelinks]{hyperref}
