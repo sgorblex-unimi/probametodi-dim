@@ -395,4 +395,55 @@ Si noti che $d_A\le k$, in quanto ogni nodo determina al più un vicino indipend
 
 
 
+
+\section{Correttezza dell'algoritmo di Metropolis}
+
+Sia $\{\pi\}_{i\in S}$ una distribuzione arbitraria su $S$. L'algoritmo di Metropolis costruisce un grafo non orientato connesso sui nodi in $S$ e, simulando una passeggiata aleatoria sul grafo, genera un elemento di $S$ con distribuzione $\pi$.
+Costruito il grafo $G=(S,E)$, l'algoritmo implementa la catena $\chain X$ definita sulla tripla $(S,\{\card S^{-1}\}_{i\in S},P)$, con $P$ definita come segue:
+\begin{equation*}
+	P(i,j):=\begin{cases}
+		0                                                                                                    & \qquad i\ne j\land \{i,j\}\notin E \\[1ex]
+		\displaystyle \frac{1}{d_i} \min\left\{\frac{\pi_j d_i}{\pi_i d_j},1\right\}                         & \qquad \{i,j\}\in E                \\[2ex]
+		\displaystyle 1 - \frac{1}{d_i} \sum_{\{i,l\}\in E} \min\left\{\frac{\pi_l d_i}{\pi_i d_l},1\right\} & \qquad i=j
+	\end{cases}
+\end{equation*}
+
+La catena è implementata tramite l'algoritmo \ref{alg:metropolis}.
+\begin{algorithm}
+	\DontPrintSemicolon
+	\KwData{$\pi$,$G=(S,E)$,$n$}
+
+	$i\asn\UR{S}$ \;
+
+	\For{$n$ volte}{
+		$j\asn\UR{$\{k\in S\mid \{j,k\}\in E\}$}$ \;
+		\If{$\pi_i d_j\le\pi_j d_i$}{
+			$i\asn j$ \;
+		}\Else{
+			$i\asn j$ con probabilità $\dfrac{\pi_j d_i}{\pi_i d_j}$ \;
+		}
+	}
+	\Return{$i$} \;
+
+	\caption{Algoritmo di Metropolis}
+	\label{alg:metropolis}
+\end{algorithm}
+
+\begin{thm}
+	La catena $\chain X$ è un algoritmo MCMC corretto per la distribuzione $\pi$.
+\end{thm}
+\begin{proof}
+	La matrice $P$ è irriducibile in quanto $G$ è connesso per ipotesi e gli archi presenti in $G$ sono presenti anche nel grafo associato a $\chain X$.
+
+	La matrice è anche aperiodica se $G$ presenta un ciclo di lunghezza dispari oppure se il grafo associato alla catena ha un cappio, ossia se per qualche $i,j$ vale $\pi_j d_i<\pi_i d_j$ e quindi
+	\begin{equation*}
+		1 - \frac{1}{d_i} \sum_{\{i,l\}\in E} > 1 - \frac{d_i}{d_i} > 0
+	\end{equation*}
+
+	Quanto alla stazionarietà di $\pi$, è sufficiente provare che $\pi$ è reversibile. Naturalmente per $i=j$ o $P(i,j)=0$ l'uguaglianza è ovvia, mentre per $\{i,j\}\in E$ supponiamo $\pi_j d_i \le \pi_i d_j$:
+	\begin{equation*}
+		\pi_i P(i,j) = \pi_i \frac{1}{d_i} \frac{\pi_j d_i}{\pi_i d_j} = \pi_j \frac{1}{d_j} = \pi_j P(j,i) \qedhere
+	\end{equation*}
+\end{proof}
+
 \end{document}
