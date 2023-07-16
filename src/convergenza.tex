@@ -1,0 +1,35 @@
+\subsection{Requisiti}
+\begin{lemma}[di contrazione]\label{lemma:contra}
+	Sia $P\in[0,1]^{k\times k}$ stocastica e $u,v\in[0,1]^k$ stocastici. Allora
+	\begin{equation*}
+		\norm{u\tra P-v\tra P} \le \beta(P)\norm{u-v}
+	\end{equation*}
+	dove $\beta(P)$ è il coefficiente ergodico di $P$.
+\end{lemma}
+
+
+\subsection{Teorema}
+\section{Velocità di convergenza minima}
+\begin{thm}
+	Sia $\chain X$ una catena primitiva su $(S,\mu,P)$ tale che $P^t>0$. Allora per ogni $\epsilon>0$ vale
+	\begin{equation*}
+		\tau(\epsilon)\le t\left(\frac{\log\epsilon}{\log\beta(P^t)}+1\right)
+	\end{equation*}
+\end{thm}
+\begin{proof}
+	Sia $\pi$ la distribuzione stazionaria di $\chain X$. Fissato $n\in\N$, sia $n=qt+r$. Si noti che $\beta(P^t)<1$ in quanto la matrice non ha colonne di zeri.
+	\begin{align*}
+		\dtv(\mu\tra P^n,\pi\tra) & = \frac12\norm{\mu\tra P^n-\pi\tra}                                   \\[1ex]
+		                          & = \frac12\norm{\mu\tra P^r\cdot (P^t)^q-\pi\tra}                      \\[1ex]
+		                          & \le \frac12\beta(P^t)^q\underbrace{\norm{\mu\tra P^r-\pi\tra}}_{\le2} \\
+		                          & \le \beta(P^t)^{\frac{n-r}{t}}                                        \\
+		                          & \le \beta(P^t)^{\frac n t -1} \le\epsilon                             \\
+	\end{align*}
+	Da cui
+	\begin{align*}
+		\left(\frac nt-1\right)\log\beta(P^t) & \le \log\epsilon                                        \\
+		\frac nt-1                            & \ge \frac{\log\epsilon}{\log\beta(P^t)}                 \\
+		n                                     & \ge t\left(\frac{\log\epsilon}{\log\beta(P^t)}+1\right)
+	\end{align*}
+	da cui segue la tesi.
+\end{proof}
