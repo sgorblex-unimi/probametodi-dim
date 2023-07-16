@@ -1,0 +1,27 @@
+% TODO: sistemare un po'. Includere risultati sul tempo di esecuzione.
+\section{Riduzione della probabilità di errore negli algoritmi bounded error}
+\newcommand{\Balg}{\mathcal B}
+
+Sia $\Aalg$ un algoritmo probabilistico bounded error per la funzione $F:I\to S$.
+Dato $\delta>0$, sia $k:=\ceil{\frac{1}{2\epsilon^2}\ln\frac{1}{\delta}}$ e sia $\Balg$ l'algoritmo che ripete $\Aalg$ $k$ volte e restituisce l'output che compare almeno $\ceil{\frac k2}$ volte o, se non esiste, dà in output $?$.
+
+\begin{thm}
+	La probabilità che $\Balg$ sbagli è al più $\delta$.
+\end{thm}
+\begin{proof}
+	Per definizione di algoritmo bounded error si ha, per qualche $\epsilon>0$, $\Pr(\Aalg(x)\ne F(x))=:p\ge\frac 12-\epsilon$.
+	La probabilità che $\Balg$ sbagli equivale alla probabilità che su $k$ esecuzioni di $\Aalg$ ci siano almeno $\ceil{\frac k2}$ insuccessi.
+	Si può dunque modellare l'esecuzione di $\Balg$ con una binomiale di parametri $k$ e $p$. La probabilità che $\Balg$ sbagli è quindi quella che la variabile aleatoria binomiale $X_{kp}$ abbia valore minore di $\ceil{\frac k2}$:
+	\begin{align*}
+		\Pr(\text{errore}) & = \Pr(\Balg(x)\ne F(x))                  \\
+		                   & = \Pr\left(X_{kp}<\ceil{\frac k2}\right) \\
+		                   & = \Pr\left(X_{kp}<\frac k2\right)        \\
+		                   & \le \Pr(X_{kp}<k(p-\epsilon))            \\
+		                   & = \Pr(X_{kp}-kp<-k\epsilon)              \\
+		                   & \le e^{2\epsilon^2 k}
+	\end{align*}
+	L'ultima ottenuta applicando la disuguaglianza di Chernoff. Ponendo $e^{2\epsilon^2 k}\le\delta$ si ricava
+	\begin{equation*}
+		k\ge\frac{1}{2\epsilon^2}\ln\frac{1}{\delta} \text. \qedhere
+	\end{equation*}
+\end{proof}
