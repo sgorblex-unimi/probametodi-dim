@@ -85,12 +85,11 @@
 \end{thm}
 \begin{proof}
 	\begin{align*}
-		\abs{\mu}\cdot\norm{v} & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                  \\
-		                       & = \sum_{j=1}^k\abs {(\mu v)_j} = \sum_{j=1}^k\abs {(v\tra A)_j}                \\
-		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{j=1}^k\abs {\sum_{i=1}^k v_i a_{i,j}} \\
-		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{j=1}^k \sum_{i=1}^k \abs{v_i} a_{i,j} \\
-		                       & = \sum_{j=1}^k\abs {(v\tra A)_j} = \sum_{i=1}^k \abs{v_i} \sum_{j=1}^k a_{i,j} \\
-		                       & = \sum_{i=1}^k \abs{v_i} = \norm{v}                                            \\
+		\abs{\mu}\cdot\norm{v} & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                                 \\
+		                       & = \sum_{j=1}^k\abs {(\mu v)_j} = \sum_{j=1}^k\abs {(v\tra A)_j}                               \\
+		                       & = \sum_{j=1}^k\abs {\sum_{i=1}^k v_i a_{i,j}}                                                 \\
+		                       & \le \sum_{j=1}^k \sum_{i=1}^k \abs{v_i} a_{i,j} = \sum_{i=1}^k \abs{v_i} \sum_{j=1}^k a_{i,j} \\
+		                       & = \sum_{i=1}^k \abs{v_i} = \norm{v}                                                           \\
 	\end{align*}
 	Da cui, essendo $v\neq 0$:
 	\begin{equation*}
