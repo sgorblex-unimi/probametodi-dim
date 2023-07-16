@@ -1,0 +1,62 @@
+\section{Costruzione di una distribuzione stazionaria}
+
+
+\subsection{Requisiti}
+\begin{prop}\label{prop:evrandvar}
+	Sia $X$ una variabile aleatoria a valori naturali. Allora
+	\begin{equation*}
+		\ev(X) = \sum_{n\ge0} \Pr(X>n) \text.
+	\end{equation*}
+\end{prop}
+
+\begin{prop}\label{prop:ricorfii}
+	Sia $i$ uno stato ricorrente in una catena di Markov. Allora $f(i,i)=1$.
+\end{prop}
+
+
+\subsection{Teorema}
+
+\begin{thm}
+	Ogni catena di Markov finita possiede una distribuzione stazionaria.
+\end{thm}
+\begin{proof}
+	Si consideri una catena sulla tripla $(S,\mu,P)$. La catena possiede uno stato essenziale e quindi ricorrente. Senza perdita di generalità sia $1$ tale stato.
+	Definiamo
+	\begin{equation*}
+		\rho_i := \sum_{n\ge0} \Pr_1(X_n=i, \tau_1>n)
+	\end{equation*}
+
+	Dimostriamo che $\pi:=\left\{\frac{\rho_i}{\ev_1(\tau_1)}\right\}$ è distribuzione stazionaria.
+
+	Innanzitutto, si noti che $\pi$ è stocastico se e solo se $\sum_{i\in S} \rho_i=\ev_1(\tau_1)$:
+	\begin{align*}
+		\sum_{i\in S} \rho_i & = \sum_{i\in S}\sum_{n\ge0} \Pr_1(X_n=i,\tau_1>n) \\
+		                     & = \sum_{n\ge0}\sum_{i\in S} \Pr_1(X_n=i,\tau_1>n) \\
+		                     & = \sum_{n\ge0} \Pr_1(\tau_1>n) = \ev_1(\tau_1)    \\
+	\end{align*}
+
+	Dimostriamo ora che $\rho$ è autovettore sinistro di $P$ rispeto all'autovalore $1$. Di conseguenza lo sarà anche $\pi$, ottenuto dal prodotto per uno scalare. Confrontiamo ogni coordinata $j$ dei vettori $\rho$ e $\rho\tra P$.
+
+	Per $j\ne1$, la probabilità di essere al passo $0$ in $j$ è nulla, e l'informazione sul tempo di prima entrata in $1$ si riduce al passo $n-1$:
+	\begin{align*}
+		\rho_j & = \sum_{n\ge0}\Pr_1(X_n=j,\tau_1>n)                                                                                 \\
+		       & = \sum_{n\ge1}\Pr_1(X_n=j,\tau_1>n-1)                                                                               \\
+		       & = \sum_{n\ge1}\sum_{i\in S}\Pr_1(X_n=j,X_{n-1}=i,\tau_1>n-1)                                                        \\
+		       & = \sum_{n\ge1}\sum_{i\in S}\underbrace{\Pr_1(X_n=j\mid X_{n-1}=i,\tau_1>n-1)}_{=P(i,j)} \Pr_1(X_{n-1}=i,\tau_1>n-1) \\
+		       & = \sum_{i\in S} P(i,j) \sum_{n\ge1} \underbrace{\Pr_1(X_{n-1}=i,\tau_1>n-1)}_{=\rho_i} = (\rho\tra P)_j
+	\end{align*}
+
+	Quanto a $j=1$, si noti innanzitutto che $\rho_1=1$. Infatti:
+	\begin{equation*}
+		\rho_1 = \underbrace{\Pr_1(X_0=1,\tau_1>0)}_{=1} + \sum_{n\ge1} \underbrace{\Pr_1(X_n=1,\tau_1>n)}_{=0} = 1
+	\end{equation*}
+	Applicando la proposizione \ref{prop:ricorfii}:
+	\begin{align*}
+		\rho_1 & = 1 = f(1,1) = \sum_{n\ge1} \Pr_1(\tau_1=n)                                                  \\
+		       & = \sum_{n\ge1} \Pr_1(X_n=1,\tau_1>n-1)                                                       \\
+		       & = \sum_{n\ge1} \sum_{i\in S} \Pr_1(X_n=1,\tau_1>n-1,X_{n-1}=i)                               \\
+		       & = \sum_{n\ge1} \sum_{i\in S} \Pr_1(X_n=1\mid\tau_1>n-1,X_{n-1}=i)\Pr_1(\tau_1>n-1,X_{n-1}=i) \\
+		       & = \sum_{i\in S} P(i,1) \sum_{n\ge1} \Pr_1(\tau_1>n-1,X_{n-1}=i)                              \\
+		       & = \sum_{i\in S} P(i,1) \rho_i = (\rho\tra P)_1 \qedhere
+	\end{align*}
+\end{proof}

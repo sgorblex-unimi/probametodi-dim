@@ -1,0 +1,58 @@
+\section{Equivalenza tra stati ricorrenti e essenziali}
+
+
+\subsection{Requisiti}
+\begin{prop}\label{prop:sumtrans}
+	In una catena di markov su $(S,\mu,P)$, sia $i\in S$ transiente. Allora, per ogni $i\in S$:
+	\begin{equation*}
+		\sum_{n\ge0}P\ape{n}(i,j)<+\infty
+	\end{equation*}
+\end{prop}
+
+
+\subsection{Teorema}
+\begin{thm}
+	Sia $\chain X$ una catena di Markov definita su $(S,\mu,P)$. Sia $i\in S$.
+	\begin{enumerate}[(a)]
+		\item \label{elem:ricess1} se $i$ è ricorrente allora $i$ è essenziale;
+		\item \label{elem:ricess2} se $i$ è essenziale e $S$ è finito, allora $i$ è ricorrente.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	$\Rightarrow)$
+	Per assurdo, sia $i$ non essenziale. Allora $i$ raggiunge uno stato $j$ fuori dalla sua classe in $m$ passi, quindi:
+	\begin{equation*}
+		\Pr_i(X_m=j)>0
+	\end{equation*}
+	Essendo $i$ ricorrente vale inoltre $\Pr(X_n=i \text{ per infiniti $n>0$})=1$.
+
+	Ma i due eventi sono disgiunti, poiché una volta lasciata la classe di $i$ (per arrivare a $j$) questa non può più essere raggiunta. Quindi
+	\begin{equation*}
+		\Pr((X_n=i \text{ per infiniti $n>0$}),X_m=j) = 0
+	\end{equation*}
+
+	Ma al contempo, essendo il primo un evento certo, vale
+
+	\begin{equation*}
+		\Pr((X_n=i \text{ per infiniti $n>0$}),X_m=j) = \Pr(X_m=j)>0 \text,
+	\end{equation*}
+	assurdo.
+
+	$\Leftarrow)$
+	Sia $[i]$ la classe irriducibile che contiene $i$. Essendo $[i]$ una classe essenziale vale, per ogni $n\in\N$,
+	\begin{equation*}
+		\sum_{j\in[i]} P\ape{n}(i,j) = 1
+	\end{equation*}
+	Per assurdo, sia $i$ transiente. Allora in virtù della proposizione \ref{prop:sumtrans} vale, per ogni $j\in S$:
+	\begin{equation*}
+		\lim_{n\to+\infty} P\ape{n}(i,j) = 0 \text.
+	\end{equation*}
+	Ergo:
+	\begin{align*}
+		1 & = \sum_{j\in[i]} P\ape{n}(i,j)                    \\
+		  & = \lim_{n\to+\infty} \sum_{j\in[i]} P\ape{n}(i,j) \\
+		  & = \sum_{j\in[i]} \lim_{n\to+\infty} P\ape{n}(i,j) \\
+		  & = \sum_{j\in[i]} 0 = 0 \text,
+	\end{align*}
+	assurdo. \qedhere
+\end{proof}

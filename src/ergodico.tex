@@ -1,0 +1,48 @@
+\section{Teorema di ergodicità}
+
+
+\subsection{Requisiti}
+\begin{prop}\label{prop:stocconv}
+	Sia $P\in[0,1]^{k\times k}$ stocastica primitiva. Allora esiste $\epsilon$ tale che $0\le\epsilon<1$ e per ogni coppia $u,v\in[0,1]^k$ di vettori stocastici:
+	\begin{equation*}
+		\norm{v\tra P^n-u\tra P^n} = O(\epsilon^n)
+	\end{equation*}
+\end{prop}
+
+
+\subsection{Teorema}
+
+\begin{thm}
+	Sia $\chain{X}$ una catena primitiva con insieme di stati $S=\{1,\dots,k\}$. Allora
+	\begin{enumerate}[(a)]
+		\item \label{elem:erg1} $\chain{X}$ possiede una e una sola distribuzione stazionaria $\pi$;
+		\item \label{elem:erg2} $\pi=\left\{ \frac{1}{\ev_i(\tau_i)} \right\}$;
+		\item \label{elem:erg3} $\chain{X}$ è ergodica e ha distribuzione limite $\pi$.
+	\end{enumerate}
+\end{thm}
+\begin{proof}
+	Sia $P$ la matrice di transizione di $\chain{X}$.
+
+	\ref{elem:erg1} Sia $\pi$ una distribuzione stazionaria per $\chain{X}$ (ne esiste sempre una) e sia $v$ un'ipotetica seconda distribuzione. Per la proposizione \ref{prop:stocconv} vale
+	\begin{align*}
+		\norm{v\tra P^n-\pi\tra P^n} & \to 0        \\
+		\norm{v\tra-\pi\tra}         & \to 0 \text,
+	\end{align*}
+	possibile solo se $v=\pi$.
+
+	\ref{elem:erg2} Sia $\pi^{(i)}$ la distribuzione stazionaria costruita sullo stato ricorrente $i$. Poiché la distribuzione stazionaria è unica si ha, per ogni $i,j\in S$:
+	\begin{equation*}
+		\pi\ape{j}_i = \pi\ape{i}_i = \frac{1}{\ev_i(\tau_i)}
+	\end{equation*}
+
+	\ref{elem:erg3} Sia $\mu$ la distribuzione iniziale di $\chain{X}$. Per la proposizione \ref{prop:stocconv} vale
+	\begin{align*}
+		\norm{\mu\tra P^n-\pi}                   & \to 0 \\
+		\sum_{i\in S}\abs{(\mu\tra P^n)_i-\pi_i} & \to 0
+	\end{align*}
+	Essendo i termini della somma non negativi, questo è possibile solo se, per ogni $i\in S$:
+	\begin{equation*}
+		(\mu\tra P^n)_i \to \pi_i
+	\end{equation*}
+	Ovvero $\Pr_{\mu}(X_n=i)\to \pi_i$. \qedhere
+\end{proof}

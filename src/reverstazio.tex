@@ -1,0 +1,14 @@
+\section{Le distribuzioni reversibili sono stazionarie}
+
+
+\subsection{Teorema}
+
+\begin{thm}
+	Sia $\pi$ una distribuzione reversibile per la catena $\chain{X}$. Allora $\pi$ è stazionaria per $\chain X$.
+\end{thm}
+\begin{proof}
+	Sia $P$ la matrice di transizione di $\chain X$ e $S$ il suo insieme degli stati. Vale:
+	\begin{equation*}
+		(\pi\tra P)_j = \sum_{i\in S} \pi_i P(i,j) = \sum_{i\in S} \pi_j P(j,i) = \pi_j \text. \qedhere
+	\end{equation*}
+\end{proof}
