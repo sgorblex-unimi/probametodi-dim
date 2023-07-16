@@ -22,6 +22,7 @@
 \newcommand{\chain}[1]{\{#1_n\}_{n\in\N}}
 \newcommand{\indic}{\mathbb I}
 \newcommand{\ev}{\mathbb E}
+\newcommand{\ape}[1]{^{(#1)}}
 
 \renewcommand{\epsilon}{\varepsilon}
 \renewcommand{\Pr}{\mathrm{Pr}}
@@ -44,8 +45,8 @@
 \begin{prop}\label{prop:rq}
 	Sia $A\in\Rp^{k\times k}$ irriducibile e sia $d$ il suo periodo. Allora per ogni $i,j\in k$ esistono $r_{i,j},q_{i,j}\in\N$ tali che $0\le r_{i,j}<d\land 0<q_{i,j}$ e:
 	\begin{enumerate}[(a)]
-		\item \label{elem:rq1} $\forall s\in\N\qquad a^{(s)}_{i,j}>0\implies s\congr r_{i,j}\mod d$;
-		\item \label{elem:rq2} $\forall n\ge q_{i,j}\qquad a^{(nd+r_{i,j})}_{i,j}>0$.
+		\item \label{elem:rq1} $\forall s\in\N\qquad a\ape{s}_{i,j}>0\implies s\congr r_{i,j}\mod d$;
+		\item \label{elem:rq2} $\forall n\ge q_{i,j}\qquad a\ape{nd+r_{i,j}}_{i,j}>0$.
 	\end{enumerate}
 \end{prop}
 
@@ -61,7 +62,7 @@
 	Inoltre dalla primitività segue che $A^{t+1}>0$. Dal momento che $A^t(i,i)>0$ e $A^{t+1}(i,i)>0$ esistono cicli di lunghezze $t$ e $t+1$ nel grafo rappresentato da $A$. Quindi se $d$ è il periodo di $A$ valgono $d\divides t$ e $d\divides t+1$, il che implica $d=1$.
 
 	$\Leftarrow)$
-	Se $A$ è irriducibile e il suo periodo è $d=1$, applicando la proposizione \ref{prop:rq} si ha che per ogni $i,j\in k$, $r_{i,j}=0$ e $a^{(n1+0)}_{i,j}>0$ per ogni $n\ge q_{i,j}$. Scegliendo $q:=\max_{i,j\in k}\{q_{i,j}\}$ si ha $A^q>0$. \qedhere
+	Se $A$ è irriducibile e il suo periodo è $d=1$, applicando la proposizione \ref{prop:rq} si ha che per ogni $i,j\in k$, $r_{i,j}=0$ e $a\ape{n1+0}_{i,j}>0$ per ogni $n\ge q_{i,j}$. Scegliendo $q:=\max_{i,j\in k}\{q_{i,j}\}$ si ha $A^q>0$. \qedhere
 \end{proof}
 
 
@@ -97,7 +98,7 @@
 \begin{prop}\label{prop:sumtrans}
 	In una catena di markov su $(S,\mu,P)$, sia $i\in S$ transiente. Allora, per ogni $i\in S$:
 	\begin{equation*}
-		\sum_{n\ge0}p^{(n)}(i,j)<+\infty
+		\sum_{n\ge0}P\ape{n}(i,j)<+\infty
 	\end{equation*}
 \end{prop}
 
@@ -133,17 +134,17 @@
 	$\Leftarrow)$
 	Sia $[i]$ la classe irriducibile che contiene $i$. Essendo $[i]$ una classe essenziale vale, per ogni $n\in\N$,
 	\begin{equation*}
-		\sum_{j\in[i]} P^{(n)}(i,j) = 1
+		\sum_{j\in[i]} P\ape{n}(i,j) = 1
 	\end{equation*}
 	Per assurdo, sia $i$ transiente. Allora in virtù della proposizione \ref{prop:sumtrans} vale, per ogni $j\in S$:
 	\begin{equation*}
-		\lim_{n\to+\infty} p^{(n)}(i,j) = 0 \text.
+		\lim_{n\to+\infty} P\ape{n}(i,j) = 0 \text.
 	\end{equation*}
 	Ergo:
 	\begin{align*}
-		1 & = \sum_{j\in[i]} p^{(n)}(i,j)                    \\
-		  & = \lim_{n\to+\infty} \sum_{j\in[i]} p^{(n)}(i,j) \\
-		  & = \sum_{j\in[i]} \lim_{n\to+\infty} p^{(n)}(i,j) \\
+		1 & = \sum_{j\in[i]} P\ape{n}(i,j)                    \\
+		  & = \lim_{n\to+\infty} \sum_{j\in[i]} P\ape{n}(i,j) \\
+		  & = \sum_{j\in[i]} \lim_{n\to+\infty} P\ape{n}(i,j) \\
 		  & = \sum_{j\in[i]} 0 = 0 \text,
 	\end{align*}
 	assurdo. \qedhere
@@ -159,7 +160,7 @@
 \begin{prop}\label{prop:transconver}
 	In una catena di markov su $(S,\mu,P)$, sia $j\in S$ transiente. Allora esiste $\epsilon$ tale che $0\le\epsilon<1$ e, per $n\to+\infty$:
 	\begin{equation*}
-		p^{(n)}(i,j) = O(\epsilon^n) \text.
+		P\ape{n}(i,j) = O(\epsilon^n) \text.
 	\end{equation*}
 \end{prop}
 
@@ -168,7 +169,7 @@
 \begin{prop}\label{prop:ricorconv}
 	In una catena di Markov su $(S,\mu,P)$, sia $i\in S$ ricorrente. Allora esiste $\epsilon$ tale che $0\le\epsilon<1$ e, per $n\to+\infty$:
 	\begin{equation*}
-		f^{(n)}(i,i) = O(\epsilon^n) \text.
+		f\ape{n}(i,i) = O(\epsilon^n) \text.
 	\end{equation*}
 \end{prop}
 \begin{proof}
@@ -177,10 +178,10 @@
 		\tilde P(i,j) := \indic(j=i) \qquad\forall j\in[i] \\
 		\tilde P(h,j) := P(h,j) \qquad\forall h,j\in[i], h\neq i \text.
 	\end{gather*}
-	Allora vale la seguente scomposizione per $f^{(n)}(i,i)$ (si tenga presente che i cammini rappresentati da tale funzione non passano per $i$ se non all'inizio e alla fine), con $n\ge2$:
+	Allora vale la seguente scomposizione per $f\ape{n}(i,i)$ (si tenga presente che i cammini rappresentati da tale funzione non passano per $i$ se non all'inizio e alla fine), con $n\ge2$:
 	\begin{align*}
-		f^{(n)}(i,i) & = \sum_{h,j\in[i]\setminus\{i\}} P(i,h)\cdot\underbrace{\tilde P^{(n-2)}(h,j)}_{O(\epsilon^n)\text{ per proposizione \ref{prop:transconver}}}\cdot P(j,i) \\
-		             & = O(\epsilon^n)\cdot O(1) = O(\epsilon^n) \text. \qedhere
+		f\ape{n}(i,i) & = \sum_{h,j\in[i]\setminus\{i\}} P(i,h)\cdot\underbrace{\tilde P\ape{n-2}(h,j)}_{O(\epsilon^n)\text{ per proposizione \ref{prop:transconver}}}\cdot P(j,i) \\
+		              & = O(\epsilon^n)\cdot O(1) = O(\epsilon^n) \text. \qedhere
 	\end{align*}
 \end{proof}
 
@@ -190,7 +191,7 @@
 \begin{proof}
 	Per definizione e applicando la proposizione \ref{prop:ricorconv}:
 	\begin{equation*}
-		\ev_i(\tau_i) = \sum_{n\ge1} nf^{(n)}(i,i) = \sum_{n\ge1} nO(e^n) < +\infty
+		\ev_i(\tau_i) = \sum_{n\ge1} nf\ape{n}(i,i) = \sum_{n\ge1} nO(e^n) < +\infty
 	\end{equation*}
 \end{proof}
 
