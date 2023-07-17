@@ -4,7 +4,7 @@ Sia $G=(V,E)$ un grafo non orientato, con $E\ne\emptyset$, e sia $S$ l'insieme d
 \begin{equation*}
 	S := \{A\subseteq V\mid \forall u,v\in A, \{u,v\}\notin A\} \text.
 \end{equation*}
-Sia $Z_G:=\card S$ e $\{\pi:=\frac{1}{Z_G}\}_{i\in S}$. Si consideri l'algoritmo \ref{alg:indset}.
+Sia $Z_G:=\card S$ e $\pi:=\{\frac{1}{Z_G}\}_{i\in S}$. Si consideri l'algoritmo \ref{alg:indset}.
 
 \begin{algorithm}
 	\DontPrintSemicolon
@@ -26,7 +26,7 @@ Sia $Z_G:=\card S$ e $\{\pi:=\frac{1}{Z_G}\}_{i\in S}$. Si consideri l'algoritmo
 	\label{alg:indset}
 \end{algorithm}
 
-L'algoritmo codifica la catena di Markov $\chain X$ costruita sugli stati $Z_G$ e la tabella di transizione $P$ definita come segue (denotiamo con $A\div B$ la differenza simmetrica di $A$ e $B$):
+L'algoritmo simula i primi $n$ passi della catena di Markov $\chain X$ costruita sugli stati $S$ e tabella di transizione $P$ definita come segue (denotiamo con $A\div B$ la differenza simmetrica di $A$ e $B$):
 \begin{equation*}
 	P(A,B):=\begin{cases}
 		0                  & \qquad \card{A\div B}>1 \\

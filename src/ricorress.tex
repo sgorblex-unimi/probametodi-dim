@@ -3,7 +3,7 @@
 
 \subsection{Requisiti}
 \begin{prop}\label{prop:sumtrans}
-	In una catena di markov su $(S,\mu,P)$, sia $i\in S$ transiente. Allora, per ogni $i\in S$:
+	In una catena di Markov su $(S,\mu,P)$, sia $i\in S$ transiente. Allora, per ogni $i\in S$:
 	\begin{equation*}
 		\sum_{n\ge0}P\ape{n}(i,j)<+\infty
 	\end{equation*}
@@ -24,17 +24,16 @@
 	\begin{equation*}
 		\Pr_i(X_m=j)>0
 	\end{equation*}
-	Essendo $i$ ricorrente vale inoltre $\Pr(X_n=i \text{ per infiniti $n>0$})=1$.
+	Essendo $i$ ricorrente vale inoltre $\Pr_i(X_n=i \text{ per infiniti $n>0$})=1$.
 
 	Ma i due eventi sono disgiunti, poiché una volta lasciata la classe di $i$ (per arrivare a $j$) questa non può più essere raggiunta. Quindi
 	\begin{equation*}
-		\Pr((X_n=i \text{ per infiniti $n>0$}),X_m=j) = 0
+		\Pr_i((X_n=i \text{ per infiniti $n>0$})\cap(X_m=j)) = 0
 	\end{equation*}
 
 	Ma al contempo, essendo il primo un evento certo, vale
-
 	\begin{equation*}
-		\Pr((X_n=i \text{ per infiniti $n>0$}),X_m=j) = \Pr(X_m=j)>0 \text,
+		\Pr_i((X_n=i \text{ per infiniti $n>0$})\cap(X_m=j)) = \Pr(X_m=j)>0 \text,
 	\end{equation*}
 	assurdo.
 
@@ -49,6 +48,7 @@
 	\end{equation*}
 	Ergo:
 	\begin{align*}
+		% TODO: tecnicamente questo passaggio non è formalmente corretto, in quanto n non è quantificato prima del limite
 		1 & = \sum_{j\in[i]} P\ape{n}(i,j)                    \\
 		  & = \lim_{n\to+\infty} \sum_{j\in[i]} P\ape{n}(i,j) \\
 		  & = \sum_{j\in[i]} \lim_{n\to+\infty} P\ape{n}(i,j) \\

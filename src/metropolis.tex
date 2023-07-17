@@ -10,7 +10,7 @@ Costruito il grafo $G=(S,E)$, l'algoritmo implementa la catena $\chain X$ defini
 	\end{cases}
 \end{equation*}
 
-La catena è implementata tramite l'algoritmo \ref{alg:metropolis}.
+La catena è simulata dall'algoritmo \ref{alg:metropolis}.
 \begin{algorithm}
 	\DontPrintSemicolon
 	\KwData{$\pi$,$G=(S,E)$,$n$}
@@ -39,11 +39,14 @@ La catena è implementata tramite l'algoritmo \ref{alg:metropolis}.
 
 	La matrice è anche aperiodica se $G$ presenta un ciclo di lunghezza dispari oppure se il grafo associato alla catena ha un cappio, ossia se per qualche $i,j$ vale $\pi_j d_i<\pi_i d_j$ e quindi
 	\begin{equation*}
-		1 - \frac{1}{d_i} \sum_{\{i,l\}\in E} > 1 - \frac{d_i}{d_i} > 0
+		1 - \frac{1}{d_i} \sum_{\{i,l\}\in E} > 1 - \frac{d_i}{d_i} = 0
 	\end{equation*}
 
-	Quanto alla stazionarietà di $\pi$, è sufficiente provare che $\pi$ è reversibile. Naturalmente per $i=j$ o $P(i,j)=0$ l'uguaglianza è ovvia, mentre per $\{i,j\}\in E$ supponiamo $\pi_j d_i \le \pi_i d_j$:
-	\begin{equation*}
-		\pi_i P(i,j) = \pi_i \frac{1}{d_i} \frac{\pi_j d_i}{\pi_i d_j} = \pi_j \frac{1}{d_j} = \pi_j P(j,i) \qedhere
-	\end{equation*}
+	Quanto alla stazionarietà di $\pi$, è sufficiente provare che $\pi$ è reversibile, ovvero che per ogni $i,j\in S$ vale $\pi_i P(i,j)=\pi_j P(j,i)$. Naturalmente per $i=j$ o $P(i,j)=0$ l'uguaglianza è ovvia, mentre per $\{i,j\}\in E$ supponiamo $\pi_j d_i \le \pi_i d_j$:
+	\begin{align*}
+		\pi_i P(i,j) & = \pi_i \frac{1}{d_i} \min\left\{\frac{\pi_j d_i}{\pi_i d_j},1\right\}                         \\[1ex]
+		             & = \pi_i \frac{1}{d_i} \frac{\pi_j d_i}{\pi_i d_j} = \pi_j \frac{1}{d_j}                        \\[1ex]
+		             & = \pi_j \frac{1}{d_j} \min\left\{\frac{\pi_i d_j}{\pi_j d_i},1\right\} = \pi_j P(j,i)
+	\end{align*}
+	Per simmetria vale lo stesso per $\pi_j d_i > \pi_i d_j$.
 \end{proof}

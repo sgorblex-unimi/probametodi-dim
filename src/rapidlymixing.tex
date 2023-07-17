@@ -1,5 +1,5 @@
 \section{Esempio di catena rapidly mixing}
-Si consideri l'insieme $S$ di possibili permutazioni di un mazzo di carte e sia $\chain X$ la catena definita sugli stati $S$ dove una transizione è definita dallo scegliere una carta a caso e porla in cima al mazzo.
+Si consideri l'insieme $S$ di possibili permutazioni di un mazzo di $k$ carte e sia $\chain X$ la catena definita sugli stati $S$ dove una transizione è definita dallo scegliere una carta a caso e porla in cima al mazzo.
 
 Definiamo l'accoppiamento $\{X_n,Y_n\}_{n\in\N}$, dove $Y_n$ è ottenuto da $Y_{n-1}$ scegliendo la stessa carta di $X_{n-1}$ e ponendola in cima al mazzo (invece di scegliere casualmente).
 
@@ -9,9 +9,10 @@ Definiamo l'accoppiamento $\{X_n,Y_n\}_{n\in\N}$, dove $Y_n$ è ottenuto da $Y_{
 \begin{proof}
 	Se $X_n\ne Y_n$ allora, a prescindere dallo stato iniziale, esiste una carta nel mazzo che non è stata scelta nei primi $n$ passi. Quindi per ogni $i,j\in S$:
 	\begin{equation*}
-		\Pr(X_n\ne Y_n\mid X_0=i,Y_0=j) \le k\left(1-\frac 1k\right)^n \le ke^{-\frac nk}
+		\Pr(X_n\ne Y_n\mid X_0=i,Y_0=j) \le k\left(1-\frac 1k\right)^n \le ke^{-\frac nk} \text,
 	\end{equation*}
-	Scelto $\epsilon>0$, si ha $ke^{-\frac nk}$ per $n\ge \log k+k\log\frac{1}{\epsilon}$. Per il lemma di accoppiamento:
+	l'ultima ottenuta in virtù della disuguaglianza $(1-x)\le e^{-x}$ per $x=\frac 1k$.
+	Scelto $\epsilon>0$, si ha $ke^{-\frac nk}$ per $n\ge k\log k+k\log\frac{1}{\epsilon}$. Per il lemma di accoppiamento:
 	\begin{equation*}
 		\tau(\epsilon)\le k\left(\log k+\log\frac{1}{\epsilon}\right) \text. \qedhere
 	\end{equation*}

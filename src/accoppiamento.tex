@@ -24,10 +24,9 @@
 \begin{proof}
 	Sia $\pi$ la distribuzione stazionaria su $\chain X$ (o $\chain Y$).
 	Fissato $i\in S$, sia $\chain{X'}$ la catena su $(S,\delta_i,P)$, dove $\delta_i$ è la distribuzione che ha probabilità $1$ di partire in $i$, e $\chain{Y'}$ la catena su $(S,\pi,P)$. Allora $p\ape{n}_i=\delta_i P^n$ è la distribuzione di $X'_n$ e $\pi$ quella di $Y'_n$.
-	Allora
+	Si ha:
 	\begin{align*}
 		\Pr(X'_n\ne Y'_n) & = \Pr(X_n\ne Y'_n\mid X_0=i)                                                          \\
-		                  & = \Pr(X_n\ne Y'_n\mid X_0=i)                                                          \\
 		                  & = \sum_{j\in S} \Pr(X_n\ne Y'_n\mid X_0=i,Y'_0=j)\Pr(Y'_0=j)                          \\
 		                  & = \sum_{j\in S} \underbrace{\Pr(X_n\ne Y_n\mid X_0=i,Y_0=j)}_{\le\epsilon}\Pr(Y'_0=j) \\
 		                  & \le \epsilon \sum_{j\in S} \pi_j = \epsilon

@@ -15,27 +15,25 @@
 
 
 \subsection{Teorema}
-
 \begin{thm}
 	Ogni catena di Markov finita possiede una distribuzione stazionaria.
 \end{thm}
 \begin{proof}
 	Si consideri una catena sulla tripla $(S,\mu,P)$. La catena possiede uno stato essenziale e quindi ricorrente. Senza perdita di generalità sia $1$ tale stato.
-	Definiamo
+	Definiamo, per ogni $i\in S$:
 	\begin{equation*}
 		\rho_i := \sum_{n\ge0} \Pr_1(X_n=i, \tau_1>n)
 	\end{equation*}
+	Dimostriamo che $\pi:=\left\{\frac{\rho_i}{\ev_1(\tau_1)}\right\}_{i\in S}$ è distribuzione stazionaria.
 
-	Dimostriamo che $\pi:=\left\{\frac{\rho_i}{\ev_1(\tau_1)}\right\}$ è distribuzione stazionaria.
-
-	Innanzitutto, si noti che $\pi$ è stocastico se e solo se $\sum_{i\in S} \rho_i=\ev_1(\tau_1)$:
+	Innanzitutto, si noti che $\pi$ è stocastico se e solo se $\sum_{i\in S} \rho_i=\ev_1(\tau_1)$, vero in quanto
 	\begin{align*}
 		\sum_{i\in S} \rho_i & = \sum_{i\in S}\sum_{n\ge0} \Pr_1(X_n=i,\tau_1>n) \\
 		                     & = \sum_{n\ge0}\sum_{i\in S} \Pr_1(X_n=i,\tau_1>n) \\
 		                     & = \sum_{n\ge0} \Pr_1(\tau_1>n) = \ev_1(\tau_1)    \\
 	\end{align*}
 
-	Dimostriamo ora che $\rho$ è autovettore sinistro di $P$ rispeto all'autovalore $1$. Di conseguenza lo sarà anche $\pi$, ottenuto dal prodotto per uno scalare. Confrontiamo ogni coordinata $j$ dei vettori $\rho$ e $\rho\tra P$.
+	Dimostriamo ora che $\rho$ è autovettore sinistro di $P$ rispetto all'autovalore $1$. Di conseguenza lo sarà anche $\pi$, ottenuto dal prodotto di $\rho$ per uno scalare. Confrontiamo ogni coordinata $j$ dei vettori $\rho$ e $\rho\tra P$.
 
 	Per $j\ne1$, la probabilità di essere al passo $0$ in $j$ è nulla, e l'informazione sul tempo di prima entrata in $1$ si riduce al passo $n-1$:
 	\begin{align*}
@@ -43,7 +41,7 @@
 		       & = \sum_{n\ge1}\Pr_1(X_n=j,\tau_1>n-1)                                                                               \\
 		       & = \sum_{n\ge1}\sum_{i\in S}\Pr_1(X_n=j,X_{n-1}=i,\tau_1>n-1)                                                        \\
 		       & = \sum_{n\ge1}\sum_{i\in S}\underbrace{\Pr_1(X_n=j\mid X_{n-1}=i,\tau_1>n-1)}_{=P(i,j)} \Pr_1(X_{n-1}=i,\tau_1>n-1) \\
-		       & = \sum_{i\in S} P(i,j) \sum_{n\ge1} \underbrace{\Pr_1(X_{n-1}=i,\tau_1>n-1)}_{=\rho_i} = (\rho\tra P)_j
+		       & = \sum_{i\in S} P(i,j) \underbrace{\sum_{n\ge1} \Pr_1(X_{n-1}=i,\tau_1>n-1)}_{=\rho_i} = (\rho\tra P)_j
 	\end{align*}
 
 	Quanto a $j=1$, si noti innanzitutto che $\rho_1=1$. Infatti:
