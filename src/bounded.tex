@@ -9,7 +9,7 @@ Dato $\delta>0$, sia $k:=\ceil{\frac{1}{2\epsilon^2}\ln\frac{1}{\delta}}$ e sia 
 	La probabilità che $\Balg$ sbagli è al più $\delta$.
 \end{thm}
 \begin{proof}
-	Per definizione di algoritmo bounded error si ha, per qualche $\epsilon>0$, $\Pr(\Aalg(x)\ne F(x))=:p\le\frac 12-\epsilon$.
+	Per definizione di algoritmo bounded error si ha, per qualche $\epsilon>0$, $\Pr(\Aalg(x)=F(x))=:p\ge\frac 12+\epsilon$.
 	La probabilità che $\Balg$ sbagli equivale alla probabilità che su $k$ esecuzioni di $\Aalg$ ci siano almeno $\ceil{\frac k2}$ insuccessi.
 	Si può dunque modellare l'esecuzione di $\Balg$ con una binomiale di parametri $k$ e $p$. La probabilità che $\Balg$ sbagli è quindi quella che la variabile aleatoria binomiale $X_{kp}$ abbia valore minore di $\ceil{\frac k2}$:
 	\begin{align*}
@@ -20,7 +20,7 @@ Dato $\delta>0$, sia $k:=\ceil{\frac{1}{2\epsilon^2}\ln\frac{1}{\delta}}$ e sia 
 		                   & = \Pr(X_{kp}-kp<-k\epsilon)              \\
 		                   & \le e^{-2\epsilon^2 k}
 	\end{align*}
-	L'ultima ottenuta applicando la disuguaglianza di Chernoff. Ponendo $e^{2\epsilon^2 k}\le\delta$ si ricava
+	L'ultima ottenuta applicando la disuguaglianza di Chernoff. Ponendo $e^{-2\epsilon^2 k}\le\delta$ si ricava
 	\begin{equation*}
 		k\ge\frac{1}{2\epsilon^2}\ln\frac{1}{\delta} \text. \qedhere
 	\end{equation*}

@@ -11,13 +11,13 @@
 \subsection{Teorema}
 \section{Velocità di convergenza minima}
 \begin{thm}
-	Sia $\chain X$ una catena primitiva sulla matrice $P$ tale che $P^t>0$. Allora per ogni $\epsilon>0$ vale
+	In una catena primitiva sulla matrice $P$ tale che $P^t>0$, per ogni $\epsilon>0$ vale
 	\begin{equation*}
 		\tau(\epsilon)\le t\left(\frac{\log\epsilon}{\log\beta(P^t)}+1\right)
 	\end{equation*}
 \end{thm}
 \begin{proof}
-	Sia $\pi$ la distribuzione stazionaria di $\chain X$. Sia $S$ il suo insieme degli stati e dato $i\in S$ sia $\delta_i$ la distribuzione che assegna a $i$ probabilità $1$. Fissato $n\ge t$, sia $n=qt+r$. Si noti che $\beta(P^t)<1$ in quanto la matrice non ha colonne di zeri.
+	Sia $\chain X$ la catena e $\pi$ la sua distribuzione stazionaria. Sia $S$ il suo insieme degli stati e dato $i\in S$ sia $\delta_i$ la distribuzione che assegna a $i$ probabilità $1$. Fissato $n\ge t$, sia $n=qt+r$. Si noti che $\beta(P^t)<1$ in quanto la matrice non ha colonne di zeri.
 	\begin{align*}
 		\dtv(\delta_i\tra P^n,\pi\tra) & = \frac12\norm{\delta_i\tra P^n-\pi\tra}                                   \\[1ex]
 		                               & = \frac12\norm{\delta_i\tra P^r\cdot (P^t)^q-\pi\tra}                      \\[1ex]
