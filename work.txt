@@ -1,0 +1,20 @@
+The LPPL requires that distributions of the Work contain all the files of the Work.
+This work consists of the following files (one per line):
+
+probametodi-dim.tex
+preambolo.sty
+accoppiamento.tex
+bounded.tex
+convergenza.tex
+ergodico.tex
+indipset.tex
+mediofinito.tex
+metropolis.tex
+onesided.tex
+primirri.tex
+rapidlymixing.tex
+reverstazio.tex
+ricorress.tex
+stazionaria.tex
+stocautov.tex
+work.txt
