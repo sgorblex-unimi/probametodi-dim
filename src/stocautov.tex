@@ -21,13 +21,13 @@
 	Sia $A\in\Rp^{k\times k}$ stocastica e $\mu$ autovalore di $A$. Allora $\abs{\mu}\le 1$.
 \end{thm}
 \begin{proof}
-	Sia $v$ autovettore sinistro di $A$ rispetto a $\mu$, ossia $v\ne0\land v\tra A$.
+	Sia $\vec{v}$ autovettore sinistro di $A$ rispetto a $\mu$, ossia $\vec{v}\ne0\land \vec{v}\tra A$.
 	\begin{align*}
-		\abs{\mu}\cdot\norm{v} & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                                 \\
-		                       & = \sum_{j=1}^k\abs {(\mu v)_j} = \sum_{j=1}^k\abs {(v\tra A)_j}                               \\
+		\abs{\mu}\cdot\norm{\vec{v}}_1 & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                                 \\
+		                       & = \sum_{j=1}^k\abs {(\mu \vec{v})_j} = \sum_{j=1}^k\abs {(\vec{v}\tra A)_j}                               \\
 		                       & = \sum_{j=1}^k\abs {\sum_{i=1}^k v_i a_{i,j}}                                                 \\
 		                       & \le \sum_{j=1}^k \sum_{i=1}^k \abs{v_i} a_{i,j} = \sum_{i=1}^k \abs{v_i} \sum_{j=1}^k a_{i,j} \\
-		                       & = \sum_{i=1}^k \abs{v_i} = \norm{v}
+		                       & = \sum_{i=1}^k \abs{v_i} = \norm{\vec{v}}_1
 	\end{align*}
 	Da cui, essendo $v\neq 0$:
 	\begin{equation*}
