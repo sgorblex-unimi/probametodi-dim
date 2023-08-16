@@ -21,7 +21,7 @@
 	Sia $A\in\Rp^{k\times k}$ stocastica e $\mu$ autovalore di $A$. Allora $\abs{\mu}\le 1$.
 \end{thm}
 \begin{proof}
-	Sia $\vec{v}$ autovettore sinistro di $A$ rispetto a $\mu$, ossia $\vec{v}\ne0\land \vec{v}\tra A$.
+	Sia $\vec{v}$ autovettore sinistro di $A$ rispetto a $\mu$, ossia $\vec{v}\ne\vec{0}\land \vec{v}\tra A$.
 	\begin{align*}
 		\abs{\mu}\cdot\norm{\vec{v}}_1 & = \abs{\mu}\sum_{j=1}^k\abs{v_j} = \sum_{j=1}^k\abs {\mu v_j}                                 \\
 		                       & = \sum_{j=1}^k\abs {(\mu \vec{v})_j} = \sum_{j=1}^k\abs {(\vec{v}\tra A)_j}                               \\
@@ -29,7 +29,7 @@
 		                       & \le \sum_{j=1}^k \sum_{i=1}^k \abs{v_i} a_{i,j} = \sum_{i=1}^k \abs{v_i} \sum_{j=1}^k a_{i,j} \\
 		                       & = \sum_{i=1}^k \abs{v_i} = \norm{\vec{v}}_1
 	\end{align*}
-	Da cui, essendo $v\neq 0$:
+	Da cui, essendo $\vec{v}\neq \vec{0}$:
 	\begin{equation*}
 		\abs{\mu}\leq 1 \qedhere
 	\end{equation*}
